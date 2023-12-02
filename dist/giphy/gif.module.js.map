@@ -1,0 +1,1 @@
+{"version":3,"file":"gif.module.js","sourceRoot":"","sources":["../../backend/src/giphy/gif.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,qDAAmD;AACnD,+CAA6C;AAMtC,IAAM,WAAW,GAAjB,MAAM,WAAW;CAAG,CAAA;AAAd,kCAAW;sBAAX,WAAW;IAJvB,IAAA,eAAM,EAAC;QACN,WAAW,EAAE,CAAC,gCAAe,CAAC;QAC9B,SAAS,EAAE,CAAC,0BAAY,CAAC;KAC1B,CAAC;GACW,WAAW,CAAG"}
