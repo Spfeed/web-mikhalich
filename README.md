@@ -1,2 +1,0 @@
-Webchik
-# gif-exchange
