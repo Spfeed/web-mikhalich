@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+}
+.container:hover .td{
+    color:cadetblue;
+    text-shadow: 0 0 10 px cadetblue;
+}
+.container:hover div{
+    background-color: rgb(150, 83, 83);
+}
+
+.td {
+    flex-grow: 1;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    cursor: default;
+    transition: all 500ms ease-in-out;
+    user-select: none;
+}

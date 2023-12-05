@@ -1,0 +1,34 @@
+.window{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(146, 146, 146, 0.353);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.7;
+    z-index: 200;
+}
+
+.modalOpen{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal_content{
+    background-color: beige;
+    transform: scale(0.5);
+    transition: 0.7s all;
+}
+
+.modal_contentOpen{
+    transform: scale(1);
+}
+
+img{
+    transform: scale(1.5);
+}
