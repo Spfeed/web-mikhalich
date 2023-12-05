@@ -10,16 +10,16 @@ exports.ExchangeGifModule = void 0;
 const common_1 = require("@nestjs/common");
 const currency_module_1 = require("../currency/currency.module");
 const gif_module_1 = require("../giphy/gif.module");
-const currency_service_1 = require("../currency/currency.service");
 const gif_service_1 = require("../giphy/gif.service");
 const exchange_gif_controller_1 = require("./exchange-gif.controller");
+const datehelper_module_1 = require("../datehelper/datehelper.module");
 let ExchangeGifModule = class ExchangeGifModule {
 };
 exports.ExchangeGifModule = ExchangeGifModule;
 exports.ExchangeGifModule = ExchangeGifModule = __decorate([
     (0, common_1.Module)({
-        providers: [gif_service_1.GiphyService, currency_service_1.CurrencyService],
-        imports: [currency_module_1.CurrencyModule, gif_module_1.GiphyModule],
+        providers: [gif_service_1.GiphyService],
+        imports: [currency_module_1.CurrencyModule, gif_module_1.GiphyModule, datehelper_module_1.DateHelperModule],
         controllers: [exchange_gif_controller_1.ExchangeGifController],
     })
 ], ExchangeGifModule);

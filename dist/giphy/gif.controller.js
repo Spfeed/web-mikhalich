@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GiphyController = void 0;
 const common_1 = require("@nestjs/common");
 const gif_service_1 = require("./gif.service");
+const swagger_1 = require("@nestjs/swagger");
 let GiphyController = class GiphyController {
     constructor(giphyService) {
         this.giphyService = giphyService;
@@ -30,12 +31,15 @@ let GiphyController = class GiphyController {
 exports.GiphyController = GiphyController;
 __decorate([
     (0, common_1.Get)('random-gif'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get random gif' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Return a random gif' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], GiphyController.prototype, "getRandomGif", null);
 exports.GiphyController = GiphyController = __decorate([
     (0, common_1.Controller)('giphy'),
+    (0, swagger_1.ApiTags)('giphy'),
     __metadata("design:paramtypes", [gif_service_1.GiphyService])
 ], GiphyController);
 //# sourceMappingURL=gif.controller.js.map

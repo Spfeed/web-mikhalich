@@ -15,33 +15,49 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CurrencyController = void 0;
 const common_1 = require("@nestjs/common");
 const currency_service_1 = require("./currency.service");
+const swagger_1 = require("@nestjs/swagger");
+const datehelper_service_1 = require("../datehelper/datehelper.service");
 let CurrencyController = class CurrencyController {
-    constructor(currencyService) {
+    constructor(currencyService, datehelperService) {
         this.currencyService = currencyService;
+        this.datehelperService = datehelperService;
     }
-    async getExchangeRate(baseCurrency, targetCurrency, date) {
+    async getExchangeRate() {
         try {
-            const exchangeRate = await this.currencyService.getExchangeRate(baseCurrency, targetCurrency, date);
+            const exchangeRate = await this.currencyService.getExchangeRate('USD', ['AUD', 'EUR', "RUB"], this.datehelperService.currentDate());
             return { exchangeRate };
         }
         catch (error) {
             console.error('Error fetching exchange rate:', error);
-            return { error: 'Error fetching exchange rate' };
+            return { error: 'Error fetching exchange rate', what: this.datehelperService.currentDate(), };
         }
+    }
+    async getAll() {
+        return this.currencyService.getAllRates();
     }
 };
 exports.CurrencyController = CurrencyController;
 __decorate([
     (0, common_1.Get)('exchange-rate'),
-    __param(0, (0, common_1.Query)('baseCurrency')),
-    __param(1, (0, common_1.Query)('targetCurrency')),
-    __param(2, (0, common_1.Query)('date')),
+    (0, swagger_1.ApiOperation)({ summary: 'Get rates' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Return rates' }),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Date]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], CurrencyController.prototype, "getExchangeRate", null);
+__decorate([
+    (0, common_1.Get)('getAllRates'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get all rates' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Return all rates' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CurrencyController.prototype, "getAll", null);
 exports.CurrencyController = CurrencyController = __decorate([
     (0, common_1.Controller)('currency'),
-    __metadata("design:paramtypes", [currency_service_1.CurrencyService])
+    (0, swagger_1.ApiTags)('currency'),
+    __param(1, (0, common_1.Inject)(datehelper_service_1.DateHelperService)),
+    __metadata("design:paramtypes", [currency_service_1.CurrencyService,
+        datehelper_service_1.DateHelperService])
 ], CurrencyController);
 //# sourceMappingURL=currency.controller.js.map

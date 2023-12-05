@@ -17,6 +17,7 @@ exports.GiphyModule = GiphyModule = __decorate([
     (0, common_1.Module)({
         controllers: [gif_controller_1.GiphyController],
         providers: [gif_service_1.GiphyService],
+        exports: [gif_service_1.GiphyService],
     })
 ], GiphyModule);
 //# sourceMappingURL=gif.module.js.map

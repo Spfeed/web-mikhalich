@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class GiphyService {
   private readonly apiKey = 'uDFmYr9EbIDi727aj7ahIBBXpvWFsF0W';
 

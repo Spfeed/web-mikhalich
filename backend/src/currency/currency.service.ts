@@ -1,24 +1,39 @@
 import axios from 'axios';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@m8a/nestjs-typegoose';
+import { CurrencyModel } from './model/currency.model';
+import { ModelType, DocumentType } from '@typegoose/typegoose/lib/types';
+import ResponseCurrencyDTO from './dto/response_currency.dto'
 
-const API_KEY = '4310eb12fabd48c89ee86ab7d202ef07';
-
+@Injectable()
 export class CurrencyService {
-  async getExchangeRate(
-    baseCurrency: string,
-    targetCurrency: string,
-    date: Date,
-  ): Promise<number> {
+  constructor(
+    @InjectModel(CurrencyModel)
+    private readonly currencyModel: ModelType<CurrencyModel>,
+  ){}
+
+  async getExchangeRate(baseCurrency: string, currencies: string[], date: string): Promise<ResponseCurrencyDTO> {
     try {
-      const dateString = date.toISOString().split('T')[0]; // Преобразуйте дату в нужный формат
-      const response = await axios.get(
-        `https://openexchangerates.org/api/historical/${dateString}.json?app_id=${API_KEY}&base=${baseCurrency}`,
+      const response = await axios.get<ResponseCurrencyDTO>(
+        `${process.env.CURRENCY_API_URL}/api/historical/${date}.json
+			?app_id=${process.env.CURRENCY_API_KEY}&base=${baseCurrency}&symbols=${currencies.join(',')}`,
       );
-      const rates = response.data.rates;
-      const exchangeRate = rates[targetCurrency];
-      return exchangeRate;
+      this.currencyModel.create({
+        sourceCurrency: baseCurrency,
+        targetCurrencey: currencies[0],
+        value: response.data.rates[currencies[0]]
+      });
+      return {
+        base: response.data.base,
+        rates: response.data.rates,
+      };
     } catch (error) {
       console.error('Error fetching exchange rate:', error);
       throw error;
     }
   }
+
+  async getAllRates(): Promise<DocumentType<CurrencyModel>[]> {
+		return this.currencyModel.find().exec();
+	}
 }

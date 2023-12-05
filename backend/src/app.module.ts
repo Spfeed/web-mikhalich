@@ -8,10 +8,24 @@ import { CurrencyController } from './currency/currency.controller';
 import { GiphyService } from './giphy/gif.service';
 import { GiphyController } from './giphy/gif.controller';
 import { ExchangeGifModule } from './gif-exchange/exchange-gif.module';
+import { TypegooseModule } from '@m8a/nestjs-typegoose';
+import { getMongoConfig } from './configs/mongo.config';
+import { ConfigService, ConfigModule } from '@nestjs/config';
+import { DateHelperModule } from './datehelper/datehelper.module';
 
 @Module({
-  imports: [CurrencyModule, GiphyModule, GiphyModule,ExchangeGifModule], 
-  controllers: [AppController, CurrencyController, GiphyController], 
-  providers: [AppService, CurrencyService, GiphyService], 
+  imports: [
+    ConfigModule.forRoot(),
+    TypegooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: getMongoConfig,
+    }),
+    CurrencyModule, 
+    GiphyModule, 
+    DateHelperModule,
+    ExchangeGifModule], 
+  controllers: [AppController], 
+  providers: [AppService], 
 })
 export class AppModule {}

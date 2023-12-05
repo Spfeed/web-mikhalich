@@ -12,19 +12,30 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const currency_module_1 = require("./currency/currency.module");
 const gif_module_1 = require("./giphy/gif.module");
-const currency_service_1 = require("./currency/currency.service");
-const currency_controller_1 = require("./currency/currency.controller");
-const gif_service_1 = require("./giphy/gif.service");
-const gif_controller_1 = require("./giphy/gif.controller");
 const exchange_gif_module_1 = require("./gif-exchange/exchange-gif.module");
+const nestjs_typegoose_1 = require("@m8a/nestjs-typegoose");
+const mongo_config_1 = require("./configs/mongo.config");
+const config_1 = require("@nestjs/config");
+const datehelper_module_1 = require("./datehelper/datehelper.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [currency_module_1.CurrencyModule, gif_module_1.GiphyModule, gif_module_1.GiphyModule, exchange_gif_module_1.ExchangeGifModule],
-        controllers: [app_controller_1.AppController, currency_controller_1.CurrencyController, gif_controller_1.GiphyController],
-        providers: [app_service_1.AppService, currency_service_1.CurrencyService, gif_service_1.GiphyService],
+        imports: [
+            config_1.ConfigModule.forRoot(),
+            nestjs_typegoose_1.TypegooseModule.forRootAsync({
+                imports: [config_1.ConfigModule],
+                inject: [config_1.ConfigService],
+                useFactory: mongo_config_1.getMongoConfig,
+            }),
+            currency_module_1.CurrencyModule,
+            gif_module_1.GiphyModule,
+            datehelper_module_1.DateHelperModule,
+            exchange_gif_module_1.ExchangeGifModule
+        ],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

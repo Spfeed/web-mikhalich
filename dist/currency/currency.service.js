@@ -1,22 +1,53 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CurrencyService = void 0;
 const axios_1 = require("axios");
-const API_KEY = '4310eb12fabd48c89ee86ab7d202ef07';
-class CurrencyService {
-    async getExchangeRate(baseCurrency, targetCurrency, date) {
+const common_1 = require("@nestjs/common");
+const nestjs_typegoose_1 = require("@m8a/nestjs-typegoose");
+const currency_model_1 = require("./model/currency.model");
+let CurrencyService = class CurrencyService {
+    constructor(currencyModel) {
+        this.currencyModel = currencyModel;
+    }
+    async getExchangeRate(baseCurrency, currencies, date) {
         try {
-            const dateString = date.toISOString().split('T')[0];
-            const response = await axios_1.default.get(`https://openexchangerates.org/api/historical/${dateString}.json?app_id=${API_KEY}&base=${baseCurrency}`);
-            const rates = response.data.rates;
-            const exchangeRate = rates[targetCurrency];
-            return exchangeRate;
+            const response = await axios_1.default.get(`${process.env.CURRENCY_API_URL}/api/historical/${date}.json
+			?app_id=${process.env.CURRENCY_API_KEY}&base=${baseCurrency}&symbols=${currencies.join(',')}`);
+            this.currencyModel.create({
+                sourceCurrency: baseCurrency,
+                targetCurrencey: currencies[0],
+                value: response.data.rates[currencies[0]]
+            });
+            return {
+                base: response.data.base,
+                rates: response.data.rates,
+            };
         }
         catch (error) {
             console.error('Error fetching exchange rate:', error);
             throw error;
         }
     }
-}
+    async getAllRates() {
+        return this.currencyModel.find().exec();
+    }
+};
 exports.CurrencyService = CurrencyService;
+exports.CurrencyService = CurrencyService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, nestjs_typegoose_1.InjectModel)(currency_model_1.CurrencyModel)),
+    __metadata("design:paramtypes", [Object])
+], CurrencyService);
 //# sourceMappingURL=currency.service.js.map

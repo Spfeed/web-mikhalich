@@ -1,12 +1,11 @@
 import { CurrencyService } from './currency.service';
+import { DateHelperService } from '../datehelper/datehelper.service';
+import { DocumentType } from '@typegoose/typegoose';
+import { CurrencyModel } from './model/currency.model';
 export declare class CurrencyController {
     private readonly currencyService;
-    constructor(currencyService: CurrencyService);
-    getExchangeRate(baseCurrency: string, targetCurrency: string, date: Date): Promise<{
-        exchangeRate: number;
-        error?: undefined;
-    } | {
-        error: string;
-        exchangeRate?: undefined;
-    }>;
+    private readonly datehelperService;
+    constructor(currencyService: CurrencyService, datehelperService: DateHelperService);
+    getExchangeRate(): Promise<any>;
+    getAll(): Promise<DocumentType<CurrencyModel>[]>;
 }
