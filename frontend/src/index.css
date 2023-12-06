@@ -5,9 +5,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to bottom, #3498db, #2c3e50); /* Градиентный фон от синего к черному */
+  color: #fff; /* Цвет текста белый */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9); /* Легкая прозрачность для контейнера */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Тень для контейнера */
+}
+
+h1 {
+  color: #3498db; /* Цвет заголовка подчеркнут синим из градиента фона */
 }
