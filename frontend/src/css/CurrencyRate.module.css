@@ -1,11 +1,15 @@
-.container{
+.container {
     display: flex;
+    justify-content: space-between; /* Добавлено для увеличения расстояния между кнопками */
+    margin: 10px; /* Добавлено для пространства вокруг контейнера */
 }
-.container:hover .td{
-    color:cadetblue;
-    text-shadow: 0 0 10 px cadetblue;
+
+.container:hover .td {
+    color: cadetblue;
+    text-shadow: 0 0 10px cadetblue;
 }
-.container:hover div{
+
+.container:hover div {
     background-color: rgb(150, 83, 83);
 }
 
@@ -15,8 +19,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: antiquewhite;
-    cursor: default;
+    background: linear-gradient(to bottom, #3498db, #2c3e50); /* Градиентный фон кнопок */
+    cursor: pointer;
     transition: all 500ms ease-in-out;
     user-select: none;
+    border: 1px solid #3498db; /* Граница кнопки */
+    border-radius: 8px; /* Закругление углов */
+    padding: 15px; /* Увеличение внутренних отступов */
+    margin: 5px; /* Добавлено для увеличения расстояния между кнопками */
+}
+
+.td:hover {
+    filter: brightness(1.2); /* Эффект при наведении на кнопку */
 }

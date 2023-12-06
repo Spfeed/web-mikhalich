@@ -1,8 +1,64 @@
 .App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: rgb(160, 71, 215);
-  background-blend-mode: screen;
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(to bottom, #3498db, #2c3e50);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 20px rgba(175, 41, 41, 0.3);
+  }
+  
+  h1 {
+    color: #3498db;
+  }
+  
+  /* Стили для кнопок */
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  /* Стили для первой кнопки */
+  .button-primary {
+    background: linear-gradient(to bottom, #2ecc71, #27ae60);
+    color: #fff;
+  }
+  
+  /* Стили для второй кнопки */
+  .button-secondary {
+    background: linear-gradient(to bottom, #e74c3c, #c0392b);
+    color: #fff;
+  }
+  
+  /* Эффект при наведении на кнопки */
+  .button:hover {
+    filter: brightness(1.2);
+  }
+  
 }
