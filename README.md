@@ -7,8 +7,8 @@
 
 Ниже приведена иллюстрация интерфейса и гиф-изображения.
 
-![Interface](./img/Interface.png)
-![Gif](./img/gif.gif)
+![Interface](./img/img.png)
+![Gif](./img/gifka.gif)
 
 ## Предварительные требования
 
