@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to bottom, #3498db, #2c3e50); /* Градиентный фон от синего к черному */
+  background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(84,28,218,1) 31%, rgba(252,70,107,1) 100%);
   color: #fff; /* Цвет текста белый */
   display: flex;
   justify-content: center;

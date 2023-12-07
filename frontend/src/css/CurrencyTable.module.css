@@ -1,10 +1,11 @@
 .container {
-    background-color: rgb(8, 87, 151);   
-    border: 4px solid rgb(255, 255, 255);    
     gap: 4px;                   
     border-radius: 4px;         
     display: grid;              
-    
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
     
     grid-template-columns: 1fr; 
     
