@@ -6,15 +6,16 @@
         "get:dependencies": "npm i && cd backend && npm i && cd ../frontend && npm i",
         "build": "cd backend && npm run build && cd ../frontend && npm run build",
         "start:first": "npm run docker-compose-up && npm run wait-on-db && concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-        "wait-on-db":"wait-on tcp:27017 && cd..",
+        "wait-on-db": "wait-on tcp:27017 && cd..",
         "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
         "start:frontend": "cd ./frontend && npx serve -s build -p 5005",
         "start:backend": "cd ./backend && npm run start:prod",
         "docker-compose-up": "cd backend && docker-compose up -d",
-        "docker-compose-down":  "cd backend && docker-compose down",
+        "docker-compose-down": "cd backend && docker-compose down",
         "test": "cd backend && npm run test"
     },
     "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "concurrently": "^8.2.2",
         "wait-on": "^7.2.0"
     }
