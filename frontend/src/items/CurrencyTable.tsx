@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import styles from '../css/CurrencyTable.module.css';
 import CurrencyRate from "./CurrencyRate";
 import Modal from "./Modal";
