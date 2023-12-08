@@ -4,7 +4,7 @@ run-name: web team running application 🚀
 
 on:
   push:
-    branches: [ test ]
+    branches: [ master ]
 
 jobs:
 

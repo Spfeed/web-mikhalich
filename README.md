@@ -1,5 +1,7 @@
 # Приложение для сравнения курсов валют
 
+[![Build, Test](https://github.com/Spfeed/web-mikhalich/actions/workflows/ci.yml/badge.svg)](https://github.com/Spfeed/web-mikhalich/actions/workflows/ci.yml)
+
 Приложение сравнивает курсы выбранных валют и выводит gif-изображение в зависимости от соотношения.
 Если курс повысился, то выводится изображение по тэгу "rich", если понизился - по тэгу "broke".
 
