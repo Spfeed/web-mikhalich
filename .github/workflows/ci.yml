@@ -1,24 +1,25 @@
-name: Nest tests
+name: build, test
 
 run-name: web team running application 🚀
 
 on:
-  push: 
-    branches[test]
+  push:
+    branches: [ test ]
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions-checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: '18.x'
-
-      - name: Docker mongo
+          
+      - name: Docker mongoDB
         uses: isbang/compose-action@v1.5.1
         with:
           compose-file: "./backend/docker-compose.yml"
@@ -34,14 +35,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions-checkout@v3
+        uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: '18.x'
-
-      - name: Docker mongo
+          
+      - name: Docker mongoDB
         uses: isbang/compose-action@v1.5.1
         with:
           compose-file: "./backend/docker-compose.yml"
@@ -52,5 +53,5 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Run tests
+      - name: Run unit tests
         run: npm run test
